@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" class="btn btn-large" value="新增" onclick="addpro()">
+<table id="protb"></table>
+
+<script type="text/javascript">
+
+
+    $(function() {
+        $('#protb').bootstrapTable({
+            url: '/selproduct',
+            pagination: true,
+            checkbox:true,
+            pageNumber: 1,
+            pageSize: 3,
+            pageList: [1, 3, 5, 8],
+            sidePagination: "server",//必须有  否则没有效果
+            method: 'post',//发送请求的方式
+            contentType: "application/x-www-form-urlencoded",//必须的否则条件查询时会乱码
+            queryParams: function () {
+                return {
+
+                    page: this.pageNumber,//当前页
+                    rows: this.pageSize //每页条数
+                }
+            },
+            columns: [
+                {field: 'id', title: '产品序号', width: 100},
+                {field: 'pname', title: '产品名称', width: 100},
+                {field: 'ptype', title: '产品类型', width: 100},
+                {field: 'pstate', title: '产品状态', width: 100},
+                {field: 'popentime', title: '开通日期', width: 100},
+                {field: 'presource', title: '产品来源', width: 100},
+                {field: '', title: '操作', width: 100,
+                    formatter: function (value, row, index) {
+
+                        return '<a href="javascript:update('+row.id+')"><span class="glyphicon glyphicon-pencil"></span></a>|<a href="javascript:del('+row.id+')"><span class="glyphicon glyphicon-trash"></span> </a>';
+
+                    }
+                }
+            ]
+        })
+    })
+
+
+    function addpro(){
+        $.ajax({
+            url:"addproducttiao",
+            type:"post",
+            success:function(mm){
+                $.addtabs.add({
+                    title:"产品详情页",
+                    content:mm,
+                })
+            }
+        })
+    }
+
+    function del(id){
+        alert(id)
+        $.ajax({
+            url:"/delproduct",
+            type:"post",
+            data:"id="+id,
+            success:function(){
+                $("#protb").bootstrapTable("refresh");
+            },
+            error:function(){
+
+            }
+        })
+    }
+</script>
+    </body>
+</html>

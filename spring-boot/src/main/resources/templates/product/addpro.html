@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>userList</title>
+    <style type="text/css">
+
+        .goodstable {
+            width: 900px;
+            max-width: 900px;
+            margin-bottom: 10px;
+        }
+        .goodstable > thead > tr > th,
+        .goodstable > tbody > tr > th,
+        .goodstable > tfoot > tr > th,
+        .goodstable > thead > tr > td,
+        .goodstable > tbody > tr > td,
+        .goodstable > tfoot > tr > td {
+            padding: 4px;
+            line-height: 1.42857143;
+            vertical-align: top;
+
+
+        }
+        .goodstable > thead > tr > th {
+            vertical-align: bottom;
+
+        }
+        .goodstable > tbody + tbody {
+
+        }
+    </style>
+</head>
+<body >
+<br/>
+<form class="form-horizontal" role="form" id="addKeHu-form">
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">产品基本信息</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="goodstable" >
+                        <tbody>
+                        <tr>
+                            <td >
+                                <div style="width:100px;"> &nbsp;&nbsp;&nbsp;产品名称：</div>
+                            </td>
+                            <td>
+                                <input type="text" name="pname" style="width:250px" class="form-control" />
+                            </td>
+                            <td>
+                                <div  style="width:100px;">&nbsp;&nbsp;&nbsp;产品类型：</div>
+                            </td>
+                            <td>
+                                <input type="text" name="ptype" style="width:250px" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <div style="width:100px;"> &nbsp;&nbsp;&nbsp;产品状态：</div>
+                            </td>
+                            <td>
+                                <input type="text" name="pstate" style="width:250px" class="form-control" />
+                            </td>
+                            <td>
+                                <div style="width:100px;">&nbsp;&nbsp;&nbsp;产品来源：</div>
+                            </td>
+                            <td>
+                                <input type="text" name="presource" style="width:250px" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div style="width:100px;">&nbsp;&nbsp;&nbsp;开通日期：</div>
+                            </td>
+                            <td>
+                                <select class="form-control" style="width:250px" name="popentime" >
+
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">专区产品信息</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="goodstable" >
+                        <tbody>
+                        <tr>
+                            <td >
+                                <div style="width:100px;"> &nbsp;&nbsp;&nbsp;产品利率（年）：</div>
+                            </td>
+                            <td>
+                                <input type="text" name="plilv"  style="width:250px" class="form-control" />
+                            </td>
+                            <td>
+                                <div style="width:100px;">&nbsp;&nbsp;&nbsp;产品期限（期）：</div>
+                            </td>
+                            <td>
+                                <input type="text" name="pqixian"  style="width:250px" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <div style="width:100px;"> &nbsp;&nbsp;&nbsp;还款方式：</div>
+                            </td>
+                            <td>
+                                <select class="form-control" style="width:250px" name="pqixian"   >
+                                    <option value="">选择期限</option>
+                                    <option value="24期">24期</option>
+                                    <option value="36期">36期</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div style="width:100px;">&nbsp;&nbsp;&nbsp;额度：</div>
+                            </td>
+                            <td>
+                                <select class="form-control" style="width:250px" name="pmethod"   >
+                                    <option value="">选择还款方式</option>
+                                    <option value="等本等息">等本等息</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td >
+                                <div style="width:100px;"> &nbsp;&nbsp;&nbsp;合同编号：</div>
+                            </td>
+                            <td>
+                                <input type="text" name="pyearlilv"  style="width:250px" class="form-control" />
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">产品风控大纲</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="goodstable" >
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3">
+                </div>
+                <div class="col-sm-3">
+                    <input type="button" onclick="submitProduct()" class="btn btn-success" value="提交"/>
+                </div>
+                <div class="col-sm-3">
+                    <input type="button" class="btn btn-primary" value="退出"/>
+                </div>
+                <div class="col-sm-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+    function submitProduct(){
+
+        $.ajax({
+            url:"/addProduct",
+            type:"post",
+            // dataType:"json",
+            data:$("#addKeHu-form").serialize(),
+            // async:false,
+            success:function (result){
+
+            },
+            error:function (){
+                alert("执行失败");
+                //location.reload();
+            }
+        });
+
+    }
+
+</script>
+</body>
+</html>
