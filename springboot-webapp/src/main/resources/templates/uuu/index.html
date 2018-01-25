@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.omg.org/spec/BPMN/20100524/MODEL">
+<head>
+    <meta charset="UTF-8"/>
+    <title>汽车</title>
+
+    <!-- Bootstrap 插件 css -->
+    <link
+            th:href="@{js/bootstrap/css/bootstrap-theme.min.css}"
+            rel="stylesheet"/>
+    <!-- Bootstrap 核心css -->
+    <link
+            th:href="@{js/bootstrap/css/bootstrap.min.css}"
+            rel="stylesheet"/>
+    <!-- Bootstrap TreeView css -->
+    <link
+            th:href="@{js/bootstrap-treeview/dist/bootstrap-treeview.min.css}"
+            rel="stylesheet"/>
+    <!-- Bootstrap addTabs css -->
+    <link
+            th:href="@{js/bootStrap-addTabs/bootstrap.addtabs.css}"
+            rel="stylesheet"/>
+    <!-- Bootstrap table css -->
+    <link
+            th:href="@{js/bootstrap-table/dist/bootstrap-table.css}"
+            rel="stylesheet"/>
+    <!-- Bootstrap dialog css -->
+    <link
+            th:href="@{js/bootstrap-dialog/dist/css/bootstrap-dialog.min.css}"
+            rel="stylesheet"/>
+
+    <!--jQuery核心js  -->
+    <script th:src="@{js/jquery.min.js}"></script>
+    <!-- bootstrap 核心js文件 -->
+    <script
+            th:src="@{js/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- bootStrap TreeView -->
+    <script
+            th:src="@{js/bootstrap-treeview/dist/bootstrap-treeview.min.js}"></script>
+    <!-- bootStrap addTabs -->
+    <script
+            th:src="@{js/bootStrap-addTabs/bootstrap.addtabs.js}"></script>
+    <!-- bootStrap table -->
+    <script
+            th:src="@{js/bootstrap-table/dist/bootstrap-table.js}"></script>
+    <!-- bootStrap dialog -->
+    <script
+            th:src="@{js/bootstrap-dialog/dist/js/bootstrap-dialog.min.js}">     </script>
+    <!-- bootStrap table 语言包中文-->
+    <script
+            th:src="@{js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js}"></script>
+
+   <!-- <script
+            th:src="@{My97/My97DatePicker/WdatePicker.js}"/>-->
+
+
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-3 column">
+            <div class="panel-group" id="panel-559145">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-559145" href="#panel-element-655175">客户管理</a>
+                    </div>
+                    <div id="panel-element-655175" class="panel-collapse collapse in">
+                        <!--<div id="collapseThree" class="panel-collapse collapse">-->
+                            <div class="panel-body">
+                                <div class="panel-body">
+                                    <a href="javascript:addTabs('潜客','/selqianketiao')" >潜客</a><br>
+                                </div>
+                                <div class="panel-body">
+                                    <a href="javascript:addTabs('黑名单客户','/selheitiao')">黑名单客户</a>
+                                </div>
+                            </div>
+                        </div>
+                    <!--</div>-->
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-559145" href="#panel-element-716005">订单客户</a>
+                    </div>
+                    <div id="panel-element-716005" class="panel-collapse collapse">
+                        <!--<div id="collapseThree" class="panel-collapse collapse">-->
+                            <div class="panel-body">
+                                <div class="panel-body">
+                                    <a href="javascript:addTabs('订单列表','/selordertiao')">订单列表</a><br/>
+                                </div>
+                                <div class="panel-body">
+                                    <a href="javascript:addTabs('找回订单','/selzhordertiao')">找回订单</a><br/>
+                                </div>
+                                <div class="panel-body">
+                                    <a href="javascript:addTabs('已拒订单','/selyjordertiao')">已拒订单</a>
+                                </div>
+                            </div>
+
+                        <!--</div>-->
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a class="panel-title" data-toggle="collapse" data-parent="#panel-559145" href="#panel-element-716005">风控管理</a>
+                    </div>
+                    <div id="panel-element-716004" class="panel-collapse collapse">
+                        <!--<div id="collapseThree" class="panel-collapse collapse">-->
+                        <div class="panel-body">
+                            <div class="panel-body">
+                                <a href="javascript:addTabs('订单列表','/selriskordertiao')">订单列表</a><br/>
+                            </div>
+                            <div class="panel-body">
+                                <a href="javascript:addTabs('找回订单','/selriskzhordertiao')">找回订单</a><br/>
+                            </div>
+
+                        </div>
+
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-9 column">
+            <ul id="myTab" class="nav nav-tabs">
+                <!--默认打开一个选项卡  -->
+                <li><a href="#home" data-toggle="tab"> 首页</a></li>
+            </ul>
+            <!--想要打开tab页内容，需要把对应的ul和要打开的内容tab放在一个div里  -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="home"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+    function addTabs(title,url){
+       // var msg = "大家快点背，我们快讲完了";
+        //添加选项卡
+        $.ajax({
+            type: "post",
+            url: url,
+            success:function(msg) {
+                $.addtabs.add({
+                    id: title,
+                    title: title,
+                    content: msg,
+                })
+            }
+        })
+    }
+</script>
+</body>
+</html>
